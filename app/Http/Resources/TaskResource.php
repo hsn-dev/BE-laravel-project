@@ -9,11 +9,6 @@ class TaskResource extends ApiResource
 
     public static $wrap = 'task';
 
-    // public function __construct($resource, $status_code = 200, $message = null)
-    // {
-    //     parent::__construct($resource, $status_code, $message);
-    // }
-
     public function toArray(Request $request): array
     {
         return [
