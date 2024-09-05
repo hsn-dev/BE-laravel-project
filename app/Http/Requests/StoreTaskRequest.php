@@ -27,7 +27,6 @@ class StoreTaskRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'desc' => ['required', 'string'],
             'status' => ['required', Rule::enum(TaskStatus::class)],
-            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 }

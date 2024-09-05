@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Invitation;
+use App\Models\Role;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 
@@ -39,8 +40,9 @@ class AuthController extends Controller
         }
 
         $user  = User::create($data);
+        $role  = Role::query()->where('name', 'Client')->first();
+        $user->roles()->attach($role);
         $token = $user->createToken($user->email)->plainTextToken;
-
         $invitation->update(['registered' => true]);
 
         return $this->render_success(['user' => $user, 'token' => $token], 'Registration successful');
